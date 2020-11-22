@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gallery_container"
+    android:layout_width="match_parent" android:layout_height="100dp">
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:name="com.sample.viewpagertest.ui.dashboard.GalleryFragment"-->
+<!--        android:id="@+id/container_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragment_view"-->
+<!--        android:name="com.sample.viewpagertest.ui.dashboard.GalleryFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
+    <com.sample.viewpagertest.ui.dashboard.GalleryView
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>
