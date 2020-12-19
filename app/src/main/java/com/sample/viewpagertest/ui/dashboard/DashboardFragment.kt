@@ -1,6 +1,7 @@
 package com.sample.viewpagertest.ui.dashboard
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -10,13 +11,13 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.*
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.facebook.drawee.view.SimpleDraweeView
 import com.sample.viewpagertest.R
+
 
 class DashboardFragment : Fragment() {
 
@@ -26,9 +27,9 @@ class DashboardFragment : Fragment() {
     private lateinit var adapter: TestAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
@@ -63,8 +64,8 @@ private class TestAdapter(
 ): RecyclerView.Adapter<ViewHolder>() {
     val items = listOf(
         TestItem.TextItem("text1"),
-        TestItem.GalleryItem(numbers = listOf(1,2,4,5,6,7,8,9), 1),
-        TestItem.GalleryItem(numbers = listOf(31,32,34,35,36,37,38,39), 2),
+        TestItem.GalleryItem(numbers = listOf(1, 2, 4, 5, 6, 7, 8, 9), 1),
+        TestItem.GalleryItem(numbers = listOf(31, 32, 34, 35, 36, 37, 38, 39), 2),
         TestItem.TextItem("text2"),
         TestItem.TextItem("text3"),
         TestItem.TextItem("text4"),
@@ -74,7 +75,7 @@ private class TestAdapter(
         TestItem.TextItem("text8"),
         TestItem.TextItem("text9"),
         TestItem.TextItem("text10"),
-        TestItem.GalleryItem(numbers = listOf(10,20,40,50,60,70,80,90), 3),
+        TestItem.GalleryItem(numbers = listOf(10, 20, 40, 50, 60, 70, 80, 90), 3),
         TestItem.TextItem("text11"),
         TestItem.TextItem("text12"),
         TestItem.TextItem("text13"),
@@ -109,6 +110,12 @@ private class TestAdapter(
             is TextViewHolder -> {
                 val data = items[position] as TestItem.TextItem
                 holder.show(data)
+
+                val uri: Uri = Uri.parse("https://meduza.io/image/attachments/images/006/281/645/wh_810_540/qnbS_Xlx3smWiBBdbe0VNA.jpg")
+                val draweeView = holder.itemView.findViewById(R.id.my_image_view) as SimpleDraweeView
+//                draweeView.ratio = 0.666f
+                draweeView.aspectRatio = 1.5f
+                draweeView.setImageURI(uri, null)
             }
             is GalleryViewHolder -> {
                 val data = items[position] as TestItem.GalleryItem
@@ -151,9 +158,12 @@ private class TestAdapter(
 
             val fl = holder.itemView as FrameLayout
             fl.removeAllViews()
-            fl.addView(safeFragment.view, 0, FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT))
+            fl.addView(
+                safeFragment.view, 0, FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT
+                )
+            )
 
             holder.fragment = safeFragment
             holder.fragment?.viewPager?.show(holder.numbers, safeFragment.childFragmentManager)

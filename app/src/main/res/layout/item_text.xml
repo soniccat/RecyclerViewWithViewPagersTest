@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="100dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="130dp">
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/cardview_shadow_start_color"/>
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:padding="16dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/my_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            fresco:actualImageScaleType="centerCrop"/>
+    </FrameLayout>
+
+<!--    <FrameLayout-->
+<!--        android:layout_width="400dp"-->
+<!--        android:layout_height="130dp"-->
+<!--        android:padding="16dp">-->
+<!--        <com.facebook.drawee.view.SimpleDraweeView-->
+<!--            android:id="@+id/my_image_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            fresco:actualImageScaleType="fitCenter"/>-->
+<!--    </FrameLayout>-->
+
+</LinearLayout>
